@@ -16,6 +16,7 @@ import processing.sound.*;
   PImage ReceptionLightsOut;
   PImage MedicalRoom;
   PImage MedicalRoomLightsOut;
+  PImage HallwayFloor2;
   
   PImage UIperson1;
   PImage UIperson2;
@@ -32,6 +33,7 @@ import processing.sound.*;
   
   
   SoundFile SoundScapeFloor1;
+  SoundFile SoundScapeFloor2;
   SoundFile menuClick;
   SoundFile neonBuzz;
 
@@ -55,6 +57,7 @@ void setup()
   ReceptionLightsOut = loadImage ("ReceptionLightsOut.jpg");
   MedicalRoom = loadImage("MedicalRoom.png");
   MedicalRoomLightsOut = loadImage("MedicalRoomLightsOut.png");
+  HallwayFloor2 = loadImage("HallwayFloor2.png");
   
   UIperson1 = loadImage ("UIcon1.png");
   UIperson2 = loadImage ("UIcon2.png");
@@ -62,8 +65,10 @@ void setup()
   UIperson4 = loadImage ("UIcon4.png");
   
   menuClick = new SoundFile(this,"MenuClickSound.wav");
-  SoundScapeFloor1 = new SoundFile(this , "Noisescape0.1.wav");
+  SoundScapeFloor1 = new SoundFile(this, "Noisescape0.1.wav");
+  SoundScapeFloor2 = new SoundFile(this, "Noisescape0.2.wav");
   neonBuzz = new SoundFile(this, "NeonBuzz.wav");
+  
   
   waitTime = 0;
   hasLegAttached = false;
@@ -299,6 +304,8 @@ void draw()
   }
     if (isMouseReleased == true && hasLegAttached == true){
   if (menuClick.isPlaying()== false) {menuClick.play();}
+   SoundScapeFloor1.stop();
+  SoundScapeFloor2.loop();
   sceneLoader = 10;
     }
   }
@@ -332,7 +339,21 @@ void draw()
   if (isMouseReleased == true){
   if (menuClick.isPlaying()== false) {menuClick.play();}
   whatText = 5;
+  hasLegAttached = true;
   showingText = true;
+  }
+  }
+  }
+  if (sceneLoader == 10)
+  {
+  image(HallwayFloor2,0,0);
+  
+      if(mouseX > 0 && mouseX < 1920 &&mouseY > 900 && mouseY < 1080){
+  if (isMouseReleased == true){
+  if (menuClick.isPlaying()== false) {menuClick.play();}
+  whatText = 0;
+  showingText = false;
+  sceneLoader = 7;
   }
   }
   }
@@ -346,10 +367,10 @@ void draw()
     if (whatText == 2){text("The crutches seem hard to opperate without arms...",980,1040);}
     if (whatText == 3){text("You manage to get yourself into the wheelchair.",980,1040);}
     if (whatText == 4){text("Getting up the stairs proves to be impossible with one leg.",980,1040);}
-    if (whatText == 5){text("Input code to open fridge.",980,1040);}
+    if (whatText == 5){text("Input code to open fridge. For now leg received",980,1040);}
 }
 lightStateCooldown++;
-if (lightStateCooldown >= 10)
+if (lightStateCooldown >= 20)
 {
   lightState = random(50);
   lightStateCooldown = 0;
