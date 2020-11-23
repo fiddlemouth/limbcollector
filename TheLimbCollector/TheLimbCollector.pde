@@ -17,6 +17,7 @@ import processing.sound.*;
   PImage MedicalRoom;
   PImage MedicalRoomLightsOut;
   PImage HallwayFloor2;
+  PImage HallwayFloor2LightsOut;
   
   PImage UIperson1;
   PImage UIperson2;
@@ -29,6 +30,7 @@ import processing.sound.*;
   int whatText;
   float lightState;
   int lightStateCooldown;
+  float opacity;
 
   
   
@@ -58,6 +60,7 @@ void setup()
   MedicalRoom = loadImage("MedicalRoom.png");
   MedicalRoomLightsOut = loadImage("MedicalRoomLightsOut.png");
   HallwayFloor2 = loadImage("HallwayFloor2.png");
+  HallwayFloor2LightsOut = loadImage("HallwayFloor2LightsOut.jpg");
   
   UIperson1 = loadImage ("UIcon1.png");
   UIperson2 = loadImage ("UIcon2.png");
@@ -69,7 +72,7 @@ void setup()
   SoundScapeFloor2 = new SoundFile(this, "Noisescape0.2.wav");
   neonBuzz = new SoundFile(this, "NeonBuzz.wav");
   
-  
+  opacity = 0;
   waitTime = 0;
   hasLegAttached = false;
 }
@@ -84,7 +87,7 @@ void draw()
       fill(255);
       textFont(font);
       textAlign(CENTER,CENTER);
-      text("Input Title Here",960,150);
+      text("The Limb Collector",960,150);
       textFont(font,60);
       if(mouseX > 900 && mouseX < 1020 &&mouseY > 480 && mouseY < 530){
         
@@ -193,19 +196,41 @@ void draw()
       }
       else {text("Back",960,800);}
   }
-  if (sceneLoader == 3)
+ if (sceneLoader == 3)
   {
   background(0);
-  textSize(200);
-  text("Where am I?",960,540);
-  waitTime = waitTime+5;
-  if (waitTime > 1000){
+  textSize(200);  
+  text("Where...",960,540);
+  
+  if (waitTime > 240){
   background (0);
-  text("What's going on?",960,540);}
-  if (waitTime > 2000){
-    background(0);
+  text("Where am I?...",960,540);}
+  
+  if (waitTime > 480){
+  background(0);
   text("I feel weird...",960,540);}
-  if (waitTime > 3000){sceneLoader = 4;}
+  
+  if (waitTime > 720){
+  sceneLoader = 4;}
+  
+  if (waitTime > 180 && waitTime <= 240) {
+    opacity += 4.25;}
+    
+  else if (waitTime > 420 && waitTime <= 480) {
+    opacity += 4.25;}
+    
+  else if (waitTime > 660 && waitTime <= 720) {
+    opacity += 4.25;}
+    
+    else {
+      opacity = 0;}
+  
+  fill(0,0,0,opacity);
+  rect(0,0,width,height);
+  fill(255);
+  waitTime += 1;
+  if (opacity >= 255) {
+  opacity = 255;}
   }
 
   if (sceneLoader == 4){
@@ -302,14 +327,15 @@ void draw()
   sceneLoader = 6;
   }
   }
+  if(mouseX > 760 && mouseX < 960 &&mouseY > 300 && mouseY < 665){
     if (isMouseReleased == true && hasLegAttached == true){
   if (menuClick.isPlaying()== false) {menuClick.play();}
    SoundScapeFloor1.stop();
-  SoundScapeFloor2.loop();
+   if(SoundScapeFloor2.isPlaying() == false){SoundScapeFloor2.loop();}
   sceneLoader = 10;
-    }
   }
-  
+  }
+  }
   if (sceneLoader == 8)
   {
   if (lightState >= 40){image(ReceptionLightsOut,0,0); neonBuzz.pause();}
@@ -346,11 +372,11 @@ void draw()
   }
   if (sceneLoader == 10)
   {
-  image(HallwayFloor2,0,0);
-  
-      if(mouseX > 0 && mouseX < 1920 &&mouseY > 900 && mouseY < 1080){
-  if (isMouseReleased == true){
-  if (menuClick.isPlaying()== false) {menuClick.play();}
+  if (lightState >= 40){image(HallwayFloor2LightsOut,0,0); neonBuzz.pause();}
+  else{image(HallwayFloor2,0,0); neonBuzz.loop(1,0.1);}
+  if(mouseX > 0 && mouseX < 1920 &&mouseY > 900 && mouseY < 1080){
+  if(isMouseReleased == true){
+  if(menuClick.isPlaying()== false) {menuClick.play();}
   whatText = 0;
   showingText = false;
   sceneLoader = 7;
