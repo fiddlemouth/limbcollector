@@ -218,18 +218,24 @@ void draw()
   if(mouseX > 1500 && mouseX < 1920 &&mouseY > 0 && mouseY < 1080){
   if (isMouseReleased == true){
   if (menuClick.isPlaying()== false) {menuClick.play();}
+  showingText = false;
+  whatText = 0;
   sceneLoader = 7;
   }
   }
   if(mouseX > 0 && mouseX < 400 &&mouseY > 0 && mouseY < 1080){
   if (isMouseReleased == true){
   if (menuClick.isPlaying()== false) {menuClick.play();}
+  showingText = false;
+  whatText = 0;
   sceneLoader = 8;
   }
   }
     if(mouseX > 0 && mouseX < 1920 &&mouseY > 900 && mouseY < 1080){
   if (isMouseReleased == true){
   if (menuClick.isPlaying()== false) {menuClick.play();}
+  showingText = false;
+  whatText = 0;
   sceneLoader = 5;
   }
   }
@@ -248,6 +254,8 @@ void draw()
     if(mouseX > 0 && mouseX < 1920 &&mouseY > 900 && mouseY < 1080){
   if (isMouseReleased == true){
   if (menuClick.isPlaying()== false) {menuClick.play();}
+  whatText = 0;
+  showingText = false;
   sceneLoader = 6;
   }
   }
@@ -259,6 +267,8 @@ void draw()
   if(mouseX > 0 && mouseX < 1920 &&mouseY > 900 && mouseY < 1080){
   if (isMouseReleased == true){
   if (menuClick.isPlaying()== false) {menuClick.play();}
+  whatText = 0;
+  showingText = false;
   sceneLoader = 6;
   }
   }
