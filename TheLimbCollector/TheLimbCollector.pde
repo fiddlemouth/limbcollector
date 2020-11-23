@@ -13,12 +13,14 @@ import processing.sound.*;
   int waitTime;
   boolean showingText;
   int whatText;
+  float lightState;
+  int lightStateCooldown;
 
   
   
   SoundFile SoundScapeFloor1;
   SoundFile menuClick;
-  
+  SoundFile neonBuzz;
 
   
 void setup()
@@ -36,6 +38,7 @@ void setup()
   
   menuClick = new SoundFile(this,"MenuClickSound.wav");
   SoundScapeFloor1 = new SoundFile(this , "Noisescape0.1.wav");
+  neonBuzz = new SoundFile(this, "NeonBuzz.wav");
   
   waitTime = 0;
   hasLegAttached = false;
@@ -176,7 +179,8 @@ void draw()
   }
 
   if (sceneLoader == 4){
-  image(bed,0,0);
+  if (lightState >= 40){image(bedLightsOut,0,0); neonBuzz.pause();}
+  else{image(bed,0,0); neonBuzz.loop(1,0.3);}
   println(mouseX,mouseY);
   if(mouseX > 1544 && mouseX < 1865 &&mouseY > 458 && mouseY < 870){
     if (isMouseReleased == true){
@@ -284,7 +288,12 @@ void draw()
     if (whatText == 3){text("You manage to get yourself into the wheelchair.",980,1040);}
     if (whatText == 4){text("Getting up the stairs proves to be impossible with one leg.",980,1040);}
 }
-
+lightStateCooldown++;
+if (lightStateCooldown >= 10)
+{
+  lightState = random(50);
+  lightStateCooldown = 0;
+}
 }
   
 
