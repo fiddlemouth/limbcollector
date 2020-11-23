@@ -55,11 +55,11 @@ void draw()
       fill(255);
       textFont(font);
       textAlign(CENTER,CENTER);
-      text("Input Title Here",960,150);
+      text("The Limb Collector",960,150);
       textFont(font,60);
       if(mouseX > 900 && mouseX < 1020 &&mouseY > 480 && mouseY < 530){
         
-        fill(100);
+        fill(201, 47, 36);
         text("Start",960,500);
         fill(255);
         if (isMouseReleased == true)
@@ -76,7 +76,7 @@ void draw()
       }
       else {text("Start",960,500);}
            if(mouseX > 870 && mouseX < 1050 &&mouseY > 580 && mouseY < 630){
-        fill(100);
+        fill(201,47,36);
         text("Controls",960,600);
         fill(255);
         if (isMouseReleased == true){ sceneLoader = 1;}
@@ -89,7 +89,7 @@ void draw()
       }
       else {text("Controls",960,600);}
            if(mouseX > 885 && mouseX < 1030 &&mouseY > 680 && mouseY < 730){
-        fill(100);
+        fill(201,47,36);
         text("Options",960,700);
         fill(255);
         if (isMouseReleased == true){ sceneLoader = 2;}
@@ -103,7 +103,7 @@ void draw()
       }
       else {text("Options",960,700);}
            if(mouseX > 920 && mouseX < 1000 &&mouseY > 780 && mouseY < 830){
-        fill(100);
+        fill(201,47,36);
         text("Exit",960,800);
         fill(255);
         if (isMouseReleased == true){ exit();}
@@ -124,10 +124,10 @@ void draw()
       fill(255);
       textFont(font);
       textAlign(CENTER,CENTER);
-      text("Input Title Here",960,150);
+      text("The Limb Collector",960,150);
       textFont(font,60);
            if(mouseX > 915 && mouseX < 1000 &&mouseY > 780 && mouseY < 830){
-        fill(100);
+        fill(201,47,36);
         text("Back",960,800);
         fill(255);
         if (isMouseReleased == true){ sceneLoader = 0;}
@@ -147,12 +147,12 @@ void draw()
       fill(255);
       textFont(font);
       textAlign(CENTER,CENTER);
-      text("Input Title Here",960,150);
+      text("The Limb Collector",960,150);
       textFont(font,60);
       text("Music",960,600);
       text("SFX",960,400);
            if(mouseX > 915 && mouseX < 1000 &&mouseY > 780 && mouseY < 830){
-        fill(100);
+        fill(201,47,36);
         text("Back",960,800);
         fill(255);
         if (isMouseReleased == true){menuClick.play(); sceneLoader = 0;}
@@ -270,8 +270,14 @@ void draw()
   if (sceneLoader == 7)
   {
   println(mouseX,mouseY);
+<<<<<<< Updated upstream
   image(Hallway2,0,0);
     if(mouseX > 760 && mouseX < 960 &&mouseY > 300 && mouseY < 665){
+=======
+  if (lightState >= 40){image(Hallway2LightsOut,0,0); neonBuzz.pause();}
+  else{image(Hallway2,0,0); neonBuzz.loop(1,0.1);}
+    if(mouseX > 760 && mouseX < 960 && mouseY > 300 && mouseY < 665){
+>>>>>>> Stashed changes
   if (isMouseReleased == true && hasLegAttached == false){
   if (menuClick.isPlaying()== false) {menuClick.play();}
   showingText = true;
