@@ -180,7 +180,7 @@ void draw()
 
   if (sceneLoader == 4){
   if (lightState >= 40){image(bedLightsOut,0,0); neonBuzz.pause();}
-  else{image(bed,0,0); neonBuzz.loop(1,0.3);}
+  else{image(bed,0,0); neonBuzz.loop(1,0.1);}
   println(mouseX,mouseY);
   if(mouseX > 1544 && mouseX < 1865 &&mouseY > 458 && mouseY < 870){
     if (isMouseReleased == true){
