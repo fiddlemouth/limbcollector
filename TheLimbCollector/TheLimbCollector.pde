@@ -7,9 +7,22 @@ import processing.sound.*;
   PImage bed;
   PImage bedLightsOut;
   PImage PatientRoom;
+  PImage PatientRoomLightsOut;
   PImage Hallway1;
+  PImage Hallway1LightsOut;
   PImage Hallway2;
+  PImage Hallway2LightsOut;
   PImage Reception;
+  PImage ReceptionLightsOut;
+  PImage MedicalRoom;
+  PImage MedicalRoomLightsOut;
+  
+  PImage UIperson1;
+  PImage UIperson2;
+  PImage UIperson3;
+  PImage UIperson4;
+  PImage UIflashlight;
+  PImage UIsaw;
   int waitTime;
   boolean showingText;
   int whatText;
@@ -25,6 +38,7 @@ import processing.sound.*;
   
 void setup()
 {
+  showUI = false;
   smooth();
   sceneLoader = 0;
   fullScreen();
@@ -32,9 +46,20 @@ void setup()
   bed = loadImage ("Bed.png");
   bedLightsOut = loadImage ("BedLightsOut.png");
   PatientRoom = loadImage ("PatientRoom.png");
+  PatientRoomLightsOut = loadImage ("PatientRoomLightsOut.png");
   Hallway1 = loadImage ("Hallway1.jpg");
+  Hallway1LightsOut = loadImage ("Hallway1LightsOut.jpg");
   Hallway2 = loadImage ("Hallway2.jpg");
+  Hallway2LightsOut = loadImage ("Hallway2LightsOut.jpg");
   Reception = loadImage ("Reception.jpg");
+  ReceptionLightsOut = loadImage ("ReceptionLightsOut.jpg");
+  MedicalRoom = loadImage("MedicalRoom.png");
+  MedicalRoomLightsOut = loadImage("MedicalRoomLightsOut.png");
+  
+  UIperson1 = loadImage ("UIcon1.png");
+  UIperson2 = loadImage ("UIcon2.png");
+  UIperson3 = loadImage ("UIcon3.png");
+  UIperson4 = loadImage ("UIcon4.png");
   
   menuClick = new SoundFile(this,"MenuClickSound.wav");
   SoundScapeFloor1 = new SoundFile(this , "Noisescape0.1.wav");
@@ -182,6 +207,7 @@ void draw()
   if (lightState >= 40){image(bedLightsOut,0,0); neonBuzz.pause();}
   else{image(bed,0,0); neonBuzz.loop(1,0.1);}
   println(mouseX,mouseY);
+  showUI = true;
   if(mouseX > 1544 && mouseX < 1865 &&mouseY > 458 && mouseY < 870){
     if (isMouseReleased == true){
       if (menuClick.isPlaying()== false) {menuClick.play();}
@@ -208,7 +234,8 @@ void draw()
   if (sceneLoader == 5)
   {
     println(mouseX,mouseY);
-  image(PatientRoom,0,0);
+  if (lightState >= 40){image(PatientRoomLightsOut,0,0); neonBuzz.pause();}
+  else{image(PatientRoom,0,0); neonBuzz.loop(1,0.1);}
     if(mouseX > 850 && mouseX < 1060 &&mouseY > 322 && mouseY < 730){
     if (isMouseReleased == true){
     if (menuClick.isPlaying()== false) {menuClick.play();}
@@ -217,7 +244,8 @@ void draw()
   }
   if (sceneLoader == 6)
   {
-  image(Hallway1,0,0);
+  if (lightState >= 40){image(Hallway1LightsOut,0,0); neonBuzz.pause();}
+  else{image(Hallway1,0,0); neonBuzz.loop(1,0.1);}
   println(mouseX,mouseY);
   if(mouseX > 1500 && mouseX < 1920 &&mouseY > 0 && mouseY < 1080){
   if (isMouseReleased == true){
@@ -247,7 +275,8 @@ void draw()
   if (sceneLoader == 7)
   {
   println(mouseX,mouseY);
-  image(Hallway2,0,0);
+  if (lightState >= 40){image(Hallway2LightsOut,0,0); neonBuzz.pause();}
+  else{image(Hallway2,0,0); neonBuzz.loop(1,0.1);}
     if(mouseX > 760 && mouseX < 960 &&mouseY > 300 && mouseY < 665){
   if (isMouseReleased == true && hasLegAttached == false){
   if (menuClick.isPlaying()== false) {menuClick.play();}
@@ -255,6 +284,11 @@ void draw()
   whatText = 4;
   }
   }
+      if(mouseX > 230 && mouseX < 480 &&mouseY > 350 && mouseY < 865){
+  if (isMouseReleased == true){
+  if (menuClick.isPlaying()== false) {menuClick.play(); sceneLoader = 9;}
+  }
+   }
     if(mouseX > 0 && mouseX < 1920 &&mouseY > 900 && mouseY < 1080){
   if (isMouseReleased == true){
   if (menuClick.isPlaying()== false) {menuClick.play();}
@@ -263,17 +297,42 @@ void draw()
   sceneLoader = 6;
   }
   }
+    if (isMouseReleased == true && hasLegAttached == true){
+  if (menuClick.isPlaying()== false) {menuClick.play();}
+  sceneLoader = 10;
+    }
   }
   
   if (sceneLoader == 8)
   {
-  image(Reception,0,0);
+  if (lightState >= 40){image(ReceptionLightsOut,0,0); neonBuzz.pause();}
+  else{image(Reception,0,0); neonBuzz.loop(1,0.1);}
   if(mouseX > 0 && mouseX < 1920 &&mouseY > 900 && mouseY < 1080){
   if (isMouseReleased == true){
   if (menuClick.isPlaying()== false) {menuClick.play();}
   whatText = 0;
   showingText = false;
   sceneLoader = 6;
+  }
+  }
+  }
+  if (sceneLoader == 9){
+    println(mouseX,mouseY);
+  if (lightState >= 40){image(MedicalRoomLightsOut,0,0); neonBuzz.pause();}
+  else{image(MedicalRoom,0,0); neonBuzz.loop(1,0.1);}
+    if(mouseX > 0 && mouseX < 1920 &&mouseY > 900 && mouseY < 1080){
+  if (isMouseReleased == true){
+  if (menuClick.isPlaying()== false) {menuClick.play();}
+  whatText = 0;
+  showingText = false;
+  sceneLoader = 7;
+  }
+  }
+      if(mouseX > 1600 && mouseX < 1790 &&mouseY > 400 && mouseY < 720){
+  if (isMouseReleased == true){
+  if (menuClick.isPlaying()== false) {menuClick.play();}
+  whatText = 5;
+  showingText = true;
   }
   }
   }
@@ -287,6 +346,7 @@ void draw()
     if (whatText == 2){text("The crutches seem hard to opperate without arms...",980,1040);}
     if (whatText == 3){text("You manage to get yourself into the wheelchair.",980,1040);}
     if (whatText == 4){text("Getting up the stairs proves to be impossible with one leg.",980,1040);}
+    if (whatText == 5){text("Input code to open fridge.",980,1040);}
 }
 lightStateCooldown++;
 if (lightStateCooldown >= 10)
@@ -294,6 +354,7 @@ if (lightStateCooldown >= 10)
   lightState = random(50);
   lightStateCooldown = 0;
 }
+UIdraw();
 }
   
 
