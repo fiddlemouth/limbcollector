@@ -24,7 +24,7 @@ import processing.sound.*;
   PImage UIperson4;
   PImage UIflashlight;
   PImage UIsaw;
->>>>>>> Stashed changes
+  
   int waitTime;
   boolean showingText;
   int whatText;
@@ -367,6 +367,7 @@ if (lightStateCooldown >= 10)
   lightState = random(50);
   lightStateCooldown = 0;
 }
+  }
 }
   
 
