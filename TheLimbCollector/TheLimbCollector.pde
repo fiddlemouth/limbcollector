@@ -1,23 +1,16 @@
-<<<<<<< Updated upstream
-//error
-size(800,800);
-background(0);
-rect(5,5,5,5);
-=======
 import processing.sound.*; 
   PFont font;
   int value = 0;
   int val = 0;
   float opacity;
   boolean isMouseReleased;
+  
   PImage bed;
   PImage bedLightsOut;
   PImage PatientRoom;
   PImage Hallway1;
   PImage Hallway2;
   PImage Reception;
-<<<<<<< Updated upstream
-=======
   PImage ReceptionLightsOut;
   PImage WaitingRoom;
   PImage MedicalRoom;
@@ -37,14 +30,11 @@ import processing.sound.*;
   int whatText;
   float lightState;
   int lightStateCooldown;
-
-  
   
   SoundFile SoundScapeFloor1;
   SoundFile menuClick;
   SoundFile neonBuzz;
 
-  
 void setup()
 {
   smooth();
@@ -57,8 +47,6 @@ void setup()
   Hallway1 = loadImage ("Hallway1.jpg");
   Hallway2 = loadImage ("Hallway2.jpg");
   Reception = loadImage ("Reception.jpg");
-<<<<<<< Updated upstream
-=======
   ReceptionLightsOut = loadImage ("ReceptionLightsOut.jpg");
   WaitingRoom = loadImage ("WaitingRoom.jpg");
   MedicalRoom = loadImage("MedicalRoom.png");
@@ -70,8 +58,7 @@ void setup()
   UIperson2 = loadImage ("UIcon2.png");
   UIperson3 = loadImage ("UIcon3.png");
   UIperson4 = loadImage ("UIcon4.png");
->>>>>>> Stashed changes
-  
+
   menuClick = new SoundFile(this,"MenuClickSound.wav");
   SoundScapeFloor1 = new SoundFile(this , "Noisescape0.1.wav");
   neonBuzz = new SoundFile(this, "NeonBuzz.wav");
@@ -80,6 +67,7 @@ void setup()
   opacity = 0;
   hasLegAttached = false;
 }
+
 void draw()
 {
   if (val != value) {value = val; isMouseReleased = true;} else {isMouseReleased = false;}
@@ -314,14 +302,11 @@ void draw()
   if (sceneLoader == 7)
   {
   println(mouseX,mouseY);
-<<<<<<< Updated upstream
   image(Hallway2,0,0);
     if(mouseX > 760 && mouseX < 960 &&mouseY > 300 && mouseY < 665){
-=======
   if (lightState >= 40){image(Hallway2LightsOut,0,0); neonBuzz.pause();}
   else{image(Hallway2,0,0); neonBuzz.loop(1,0.1);}
     if(mouseX > 760 && mouseX < 960 && mouseY > 300 && mouseY < 665){
->>>>>>> Stashed changes
   if (isMouseReleased == true && hasLegAttached == false){
   if (menuClick.isPlaying()== false) {menuClick.play();}
   showingText = true;
@@ -337,11 +322,7 @@ void draw()
   }
   }
   }
-<<<<<<< Updated upstream
-  
-=======
 
->>>>>>> Stashed changes
   if (sceneLoader == 8)
   {
   image(Reception,0,0);
@@ -397,4 +378,3 @@ void mouseClicked() {
   value = 0;
   }
 }
->>>>>>> Stashed changes
